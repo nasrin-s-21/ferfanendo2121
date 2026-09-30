@@ -1,0 +1,523 @@
+Student Information Management System
+
+Separate Development Prompts
+
+1. Frontend Development Prompt
+
+Build the FRONTEND ONLY for a Student Information Management System.
+
+
+Technology:
+
+- HTML5
+
+- CSS3
+
+- JavaScript
+
+- Bootstrap 5
+
+
+Create a modern, clean, responsive college student website.
+
+
+Pages required:
+
+
+1. Login Page
+
+- Student Register Number
+
+- Password
+
+- Show/Hide Password
+
+- Login button
+
+- Forgot Password
+
+- Link to Registration
+
+- Form validation
+
+- Error/success messages
+
+
+2. Student Registration Page
+
+Fields:
+
+- Student Name
+
+- Register Number
+
+- Date of Birth
+
+- Gender
+
+- Email
+
+- Phone Number
+
+- Department
+
+- Year
+
+- Section
+
+- Address
+
+- City
+
+- District
+
+- State
+
+- Pincode
+
+- Parent Name
+
+- Parent Phone
+
+- Password
+
+- Confirm Password
+
+
+3. Student Dashboard
+
+- Welcome message
+
+- Student name
+
+- Register number
+
+- Department
+
+- Year
+
+- Profile summary
+
+- View Profile
+
+- Edit Profile
+
+- Logout
+
+
+4. Student Profile Page
+
+Display:
+
+- Personal information
+
+- Academic information
+
+- Contact information
+
+- Parent/Guardian information
+
+- Edit button
+
+- Save/Update button
+
+
+Requirements:
+
+- Fully responsive for mobile, tablet and desktop
+
+- Professional college-style UI
+
+- Clean navigation
+
+- Cards and dashboard layout
+
+- Client-side form validation
+
+- Password visibility toggle
+
+- Loading states
+
+- Success/error notifications
+
+- Use semantic HTML
+
+- Keep JavaScript separate from HTML
+
+- Keep CSS separate from HTML
+
+
+IMPORTANT:
+
+Do not create the backend or database yet.
+
+Use dummy/mock data and placeholder API URLs.
+
+Create a clean frontend folder structure.
+
+2. Backend Development Prompt
+
+Build the BACKEND ONLY for a Student Information Management System.
+
+
+Technology:
+
+- Python
+
+- Flask
+
+- Flask-SQLAlchemy
+
+- Flask-JWT-Extended
+
+- bcrypt
+
+- MySQL
+
+- Flask-CORS
+
+
+Create REST APIs for:
+
+
+AUTHENTICATION
+
+
+POST /api/register
+
+- Register a new student
+
+- Validate all required fields
+
+- Check duplicate register number
+
+- Check duplicate email
+
+- Hash password using bcrypt
+
+
+POST /api/login
+
+- Login using register number and password
+
+- Verify hashed password
+
+- Generate JWT token
+
+- Return authenticated student information
+
+
+POST /api/logout
+
+- Handle logout/token invalidation if applicable
+
+
+STUDENT
+
+
+GET /api/student/profile
+
+- Return logged-in student's profile
+
+- Require authentication
+
+
+PUT /api/student/profile
+
+- Update logged-in student's information
+
+- Validate input
+
+- Require authentication
+
+
+POST /api/forgot-password
+
+- Implement a secure password recovery flow
+
+- Do not expose sensitive information
+
+
+DATABASE FIELDS:
+
+id
+
+register_number
+
+student_name
+
+date_of_birth
+
+gender
+
+email
+
+phone
+
+department
+
+year
+
+section
+
+address
+
+city
+
+district
+
+state
+
+pincode
+
+parent_name
+
+parent_phone
+
+password_hash
+
+created_at
+
+updated_at
+
+
+SECURITY:
+
+- Never store plain-text passwords
+
+- Use bcrypt password hashing
+
+- JWT authentication
+
+- Input validation
+
+- SQL injection protection
+
+- CORS configuration
+
+- Proper HTTP status codes
+
+- Secure error handling
+
+- Never return password_hash in API responses
+
+
+API response format:
+
+{
+
+  "success": true,
+
+  "message": "Login successful",
+
+  "data": {}
+
+}
+
+
+Error format:
+
+{
+
+  "success": false,
+
+  "message": "Invalid credentials"
+
+}
+
+
+Create:
+
+- app.py
+
+- config.py
+
+- database.py
+
+- models/
+
+- routes/
+
+- middleware/
+
+- requirements.txt
+
+
+IMPORTANT:
+
+Do not create the frontend.
+
+Do not create HTML/CSS/JavaScript.
+
+Focus only on the Flask REST API and backend architecture.
+
+3. Database Development Prompt
+
+Design the DATABASE ONLY for a Student Information Management System.
+
+
+Database:
+
+MySQL
+
+
+Database name:
+
+student_management
+
+
+Create a properly normalized database schema.
+
+
+Main table:
+
+
+students
+
+
+Columns:
+
+- id INT PRIMARY KEY AUTO_INCREMENT
+
+- register_number VARCHAR(50) UNIQUE NOT NULL
+
+- student_name VARCHAR(150) NOT NULL
+
+- date_of_birth DATE
+
+- gender VARCHAR(20)
+
+- email VARCHAR(150) UNIQUE NOT NULL
+
+- phone VARCHAR(20)
+
+- department VARCHAR(100)
+
+- year INT
+
+- section VARCHAR(20)
+
+- address TEXT
+
+- city VARCHAR(100)
+
+- district VARCHAR(100)
+
+- state VARCHAR(100)
+
+- pincode VARCHAR(10)
+
+- parent_name VARCHAR(150)
+
+- parent_phone VARCHAR(20)
+
+- password_hash VARCHAR(255) NOT NULL
+
+- created_at TIMESTAMP
+
+- updated_at TIMESTAMP
+
+
+Requirements:
+
+- Primary key
+
+- Unique constraints
+
+- NOT NULL constraints where appropriate
+
+- Proper indexes
+
+- Foreign keys if additional tables are required
+
+- created_at and updated_at timestamps
+
+
+Also create:
+
+1. schema.sql
+
+2. INSERT sample student records
+
+3. Database relationship explanation
+
+4. Sample SQL queries:
+
+   - Insert student
+
+   - Find student by register number
+
+   - Find student by email
+
+   - Update student
+
+   - Delete student
+
+   - Get student profile
+
+
+IMPORTANT:
+
+Do not create frontend or backend code.
+
+Only create the MySQL database design and SQL scripts.
+
+4. Frontend + Backend Integration Prompt
+
+Connect my existing Student Information Management frontend with my existing Flask backend.
+
+
+Frontend:
+
+HTML + CSS + JavaScript + Bootstrap
+
+
+Backend:
+
+Python Flask REST API
+
+
+Connect these frontend actions to APIs:
+
+
+Login → POST /api/login
+
+Registration → POST /api/register
+
+View Profile → GET /api/student/profile
+
+Update Profile → PUT /api/student/profile
+
+Logout → POST /api/logout
+
+
+Requirements:
+
+- Use fetch() for API calls
+
+- Send and receive JSON
+
+- Store authentication token securely according to the chosen auth design
+
+- Send Authorization header for protected APIs
+
+- Handle loading states
+
+- Handle API errors
+
+- Display success/error messages
+
+- Redirect to dashboard after successful login
+
+- Prevent unauthenticated access to dashboard/profile pages
+
+- Automatically handle expired authentication
+
+- Do not expose passwords
+
+- Keep frontend and backend code separate
+
+
+Do not redesign the existing UI unless necessary.
+
+Do not change the database schema unless required for integration.
