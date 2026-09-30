@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration | Apex SIMS - Student Information Management System</title>
+  <meta name="description" content="Register as a new student in Apex SIMS to create your official academic profile and student portal account.">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <main class="auth-wrapper py-5">
+    <div class="auth-card-container auth-card-wide">
+      
+      <!-- Top Brand Strip -->
+      <div class="p-4 px-lg-5 border-bottom bg-light d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <div class="d-flex align-items-center gap-3">
+          <div class="sims-brand-logo">
+            <i class="bi bi-mortarboard-fill"></i>
+          </div>
+          <div>
+            <h1 class="sims-brand-title mb-0" style="font-size: 1.35rem;">Apex Institute of Technology</h1>
+            <span class="sims-brand-subtitle">Student Information Management System (SIMS)</span>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <span class="text-muted small d-none d-sm-inline">Already have an account?</span>
+          <a href="login.html" class="btn btn-outline-primary btn-sm px-3 fw-semibold">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Student Login
+          </a>
+        </div>
+      </div>
+
+      <div class="p-4 p-md-5">
+        
+        <!-- Page Title & Progress header -->
+        <div class="mb-4 text-center text-md-start">
+          <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-bold text-uppercase mb-2" style="font-size: 0.75rem;">
+            <i class="bi bi-person-plus-fill me-1"></i> New Student Enrollment
+          </span>
+          <h2 class="auth-title mb-1">Student Registration Form</h2>
+          <p class="auth-subtitle mb-0">Please fill in your authentic academic, personal, and guardian information below.</p>
+        </div>
+
+        <!-- Registration Form -->
+        <form id="registerForm" class="needs-validation" novalidate>
+
+          <!-- 1. Personal Information Section -->
+          <div class="form-section-title">
+            <i class="bi bi-person-vcard fs-5"></i>
+            <span>1. Personal Information</span>
+          </div>
+
+          <div class="row g-3">
+            <!-- Student Name -->
+            <div class="col-md-6">
+              <label for="regName" class="form-label">Full Name of Student <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="regName" 
+                  placeholder="e.g. Aarav Sharma" 
+                  required 
+                  minlength="3"
+                >
+                <div class="invalid-feedback">Please enter your full legal name (minimum 3 characters).</div>
+              </div>
+            </div>
+
+            <!-- Register Number -->
+            <div class="col-md-6">
+              <label for="regRegisterNo" class="form-label">Student Register Number <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-card-heading"></i></span>
+                <input 
+                  type="text" 
+                  class="form-control text-uppercase" 
+                  id="regRegisterNo" 
+                  placeholder="e.g. 21CS109" 
+                  required 
+                  pattern="[A-Za-z0-9]{5,15}"
+                >
+                <div class="invalid-feedback">Please enter a valid alphanumeric register number (e.g. 21CS109).</div>
+              </div>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="col-md-6">
+              <label for="regDob" class="form-label">Date of Birth <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+                <input 
+                  type="date" 
+                  class="form-control" 
+                  id="regDob" 
+                  required
+                  max="2012-12-31"
+                  min="1990-01-01"
+                >
+                <div class="invalid-feedback">Please select a valid date of birth.</div>
+              </div>
+            </div>
+
+            <!-- Gender -->
+            <div class="col-md-6">
+              <label for="regGender" class="form-label">Gender <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-gender-ambiguous"></i></span>
+                <select class="form-select" id="regGender" required>
+                  <option value="" disabled selected>Select Gender...</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Non-Binary">Non-Binary</option>
+                  <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+                <div class="invalid-feedback">Please select your gender.</div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- 2. Academic Details Section -->
+          <div class="form-section-title">
+            <i class="bi bi-mortarboard fs-5"></i>
+            <span>2. Academic Details</span>
+          </div>
+
+          <div class="row g-3">
+            <!-- Department -->
+            <div class="col-md-6">
+              <label for="regDepartment" class="form-label">Department / Branch <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-buildings"></i></span>
+                <select class="form-select" id="regDepartment" required>
+                  <option value="" disabled selected>Select Department...</option>
+                  <option value="Computer Science and Engineering">Computer Science and Engineering (CSE)</option>
+                  <option value="Information Technology">Information Technology (IT)</option>
+                  <option value="Electronics and Communication Engineering">Electronics and Communication Engineering (ECE)</option>
+                  <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering (EEE)</option>
+                  <option value="Mechanical Engineering">Mechanical Engineering (MECH)</option>
+                  <option value="Civil Engineering">Civil Engineering (CIVIL)</option>
+                  <option value="Artificial Intelligence and Data Science">Artificial Intelligence and Data Science (AIDS)</option>
+                </select>
+                <div class="invalid-feedback">Please select your department.</div>
+              </div>
+            </div>
+
+            <!-- Year -->
+            <div class="col-md-3">
+              <label for="regYear" class="form-label">Year of Study <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-calendar-range"></i></span>
+                <select class="form-select" id="regYear" required>
+                  <option value="" disabled selected>Select Year...</option>
+                  <option value="1st Year">1st Year</option>
+                  <option value="2nd Year">2nd Year</option>
+                  <option value="3rd Year">3rd Year</option>
+                  <option value="4th Year">4th Year</option>
+                </select>
+                <div class="invalid-feedback">Please select your year.</div>
+              </div>
+            </div>
+
+            <!-- Section -->
+            <div class="col-md-3">
+              <label for="regSection" class="form-label">Section <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-diagram-3"></i></span>
+                <select class="form-select" id="regSection" required>
+                  <option value="" disabled selected>Select...</option>
+                  <option value="A">Section A</option>
+                  <option value="B">Section B</option>
+                  <option value="C">Section C</option>
+                  <option value="D">Section D</option>
+                </select>
+                <div class="invalid-feedback">Please select section.</div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- 3. Contact & Address Information -->
+          <div class="form-section-title">
+            <i class="bi bi-envelope-at fs-5"></i>
+            <span>3. Contact & Address Information</span>
+          </div>
+
+          <div class="row g-3">
+            <!-- Email -->
+            <div class="col-md-6">
+              <label for="regEmail" class="form-label">Student Email Address <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                <input 
+                  type="email" 
+                  class="form-control" 
+                  id="regEmail" 
+                  placeholder="student.name@apex.edu.in" 
+                  required
+                >
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+              </div>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="col-md-6">
+              <label for="regPhone" class="form-label">Mobile Phone Number <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                <input 
+                  type="tel" 
+                  class="form-control" 
+                  id="regPhone" 
+                  placeholder="10-digit mobile number" 
+                  required
+                  pattern="[0-9]{10}"
+                  maxlength="10"
+                >
+                <div class="invalid-feedback">Please enter a valid 10-digit phone number.</div>
+              </div>
+            </div>
+
+            <!-- Address -->
+            <div class="col-12">
+              <label for="regAddress" class="form-label">Permanent Residential Address <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="regAddress" 
+                  placeholder="House/Flat No, Street, Landmark" 
+                  required
+                >
+                <div class="invalid-feedback">Please enter your address.</div>
+              </div>
+            </div>
+
+            <!-- City -->
+            <div class="col-md-3">
+              <label for="regCity" class="form-label">City / Town <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="regCity" placeholder="City name" required>
+              <div class="invalid-feedback">City is required.</div>
+            </div>
+
+            <!-- District -->
+            <div class="col-md-3">
+              <label for="regDistrict" class="form-label">District <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="regDistrict" placeholder="District name" required>
+              <div class="invalid-feedback">District is required.</div>
+            </div>
+
+            <!-- State -->
+            <div class="col-md-3">
+              <label for="regState" class="form-label">State <span class="text-danger">*</span></label>
+              <select class="form-select" id="regState" required>
+                <option value="" disabled selected>Select State...</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Other">Other State/UT</option>
+              </select>
+              <div class="invalid-feedback">Please select state.</div>
+            </div>
+
+            <!-- Pincode -->
+            <div class="col-md-3">
+              <label for="regPincode" class="form-label">Pincode <span class="text-danger">*</span></label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="regPincode" 
+                placeholder="6-digit pincode" 
+                required
+                pattern="[0-9]{6}"
+                maxlength="6"
+              >
+              <div class="invalid-feedback">Please enter a 6-digit postal code.</div>
+            </div>
+          </div>
+
+
+          <!-- 4. Parent / Guardian Information -->
+          <div class="form-section-title">
+            <i class="bi bi-people fs-5"></i>
+            <span>4. Parent / Guardian Information</span>
+          </div>
+
+          <div class="row g-3">
+            <!-- Parent Name -->
+            <div class="col-md-6">
+              <label for="regParentName" class="form-label">Parent / Guardian Name <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-person-heart"></i></span>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="regParentName" 
+                  placeholder="Full name of father/mother/guardian" 
+                  required
+                >
+                <div class="invalid-feedback">Please enter parent or guardian name.</div>
+              </div>
+            </div>
+
+            <!-- Parent Phone -->
+            <div class="col-md-6">
+              <label for="regParentPhone" class="form-label">Parent / Guardian Contact Number <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-telephone-plus"></i></span>
+                <input 
+                  type="tel" 
+                  class="form-control" 
+                  id="regParentPhone" 
+                  placeholder="10-digit mobile number" 
+                  required
+                  pattern="[0-9]{10}"
+                  maxlength="10"
+                >
+                <div class="invalid-feedback">Please enter a valid 10-digit emergency contact number.</div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- 5. Account Security -->
+          <div class="form-section-title">
+            <i class="bi bi-shield-lock fs-5"></i>
+            <span>5. Account Security & Password</span>
+          </div>
+
+          <div class="row g-3">
+            <!-- Password -->
+            <div class="col-md-6">
+              <label for="regPassword" class="form-label">Create Portal Password <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-key"></i></span>
+                <input 
+                  type="password" 
+                  class="form-control has-toggle" 
+                  id="regPassword" 
+                  placeholder="At least 6 characters" 
+                  required
+                  minlength="6"
+                  autocomplete="new-password"
+                >
+                <button 
+                  type="button" 
+                  class="password-toggle-btn" 
+                  data-target="regPassword"
+                  aria-label="Show password"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+                <div class="invalid-feedback">Password must be at least 6 characters long.</div>
+              </div>
+              
+              <!-- Password strength meter -->
+              <div class="password-strength-bar" id="passwordStrengthBar">
+                <div class="password-strength-fill"></div>
+              </div>
+              <div class="password-strength-text" id="passwordStrengthText"></div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="col-md-6">
+              <label for="regConfirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                <input 
+                  type="password" 
+                  class="form-control has-toggle" 
+                  id="regConfirmPassword" 
+                  placeholder="Re-enter password" 
+                  required
+                  minlength="6"
+                  autocomplete="new-password"
+                >
+                <button 
+                  type="button" 
+                  class="password-toggle-btn" 
+                  data-target="regConfirmPassword"
+                  aria-label="Show password"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+                <div class="invalid-feedback">Passwords must match identically.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Terms & Condition Checkbox -->
+          <div class="mt-4 mb-4">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="termsCheck" required>
+              <label class="form-check-label small text-secondary" for="termsCheck">
+                I hereby declare that the particulars provided in this student enrollment registration form are true and correct to the best of my knowledge.
+              </label>
+              <div class="invalid-feedback">You must accept the declaration to register.</div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="d-flex flex-wrap gap-3 align-items-center justify-content-end pt-3 border-top">
+            <button type="reset" class="btn btn-outline-secondary px-4">
+              <i class="bi bi-arrow-counterclockwise me-1"></i> Reset Form
+            </button>
+            <button type="submit" class="btn btn-sims-primary px-5 py-2 fs-6" id="regSubmitBtn">
+              <span id="regBtnSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+              <span id="regBtnText"><i class="bi bi-check-circle-fill me-1"></i> Complete Student Registration</span>
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="sims-toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

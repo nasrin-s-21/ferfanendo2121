@@ -1,0 +1,433 @@
+/* ==========================================================================
+   SIMS - Student Information Management System
+   Dashboard & Profile Stylesheet
+   ========================================================================== */
+
+/* Page Header / Welcome Hero */
+.dashboard-hero {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%);
+  border-radius: var(--sims-radius-xl);
+  padding: 2.25rem 2.5rem;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.25);
+  margin-bottom: 2rem;
+}
+
+.dashboard-hero::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+}
+
+.dashboard-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.dashboard-hero-title {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.dashboard-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.hero-meta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--sims-radius-full);
+  font-size: 0.825rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-avatar-box {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.hero-avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Stat Cards */
+.stat-card {
+  background: #ffffff;
+  border: 1px solid var(--sims-border);
+  border-radius: var(--sims-radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--sims-shadow-sm);
+  transition: var(--sims-transition);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sims-shadow-md);
+  border-color: #cbd5e1;
+}
+
+.stat-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--sims-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.stat-icon-blue   { background: #eff6ff; color: #2563eb; }
+.stat-icon-emerald{ background: #ecfdf5; color: #10b981; }
+.stat-icon-amber  { background: #fffbeb; color: #f59e0b; }
+.stat-icon-purple { background: #f5f3ff; color: #8b5cf6; }
+
+.stat-value {
+  font-family: var(--sims-font-heading);
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--sims-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sims-text-muted);
+}
+
+.stat-subtext {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  color: var(--sims-text-secondary);
+}
+
+/* Quick Action Tiles */
+.action-card {
+  background: #ffffff;
+  border: 1px solid var(--sims-border);
+  border-radius: var(--sims-radius-md);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--sims-text-primary);
+  transition: var(--sims-transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.action-card:hover {
+  background: #f8fafc;
+  border-color: var(--sims-accent);
+  color: var(--sims-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--sims-shadow-sm);
+}
+
+.action-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--sims-accent-subtle);
+  color: var(--sims-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: var(--sims-transition);
+}
+
+.action-card:hover .action-card-icon {
+  background: var(--sims-accent);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.action-card-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Schedule / Timetable Items */
+.schedule-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: var(--sims-radius-md);
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  margin-bottom: 0.75rem;
+  transition: var(--sims-transition);
+}
+
+.schedule-item:hover {
+  background: #ffffff;
+  border-color: var(--sims-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.schedule-time-box {
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+}
+
+.schedule-time {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--sims-text-primary);
+}
+
+.schedule-room {
+  font-size: 0.75rem;
+  color: var(--sims-text-muted);
+}
+
+.schedule-details {
+  flex-grow: 1;
+  padding: 0 1rem;
+}
+
+.schedule-code {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--sims-accent);
+  text-transform: uppercase;
+}
+
+.schedule-title {
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: var(--sims-text-primary);
+  margin-bottom: 0.15rem;
+}
+
+.schedule-prof {
+  font-size: 0.78rem;
+  color: var(--sims-text-muted);
+}
+
+/* Notice List */
+.notice-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--sims-border);
+}
+
+.notice-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.notice-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sims-accent);
+  margin-top: 0.45rem;
+  flex-shrink: 0;
+}
+
+.notice-content {
+  flex-grow: 1;
+}
+
+.notice-title {
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: var(--sims-text-primary);
+  margin-bottom: 0.25rem;
+  line-height: 1.35;
+}
+
+.notice-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--sims-text-muted);
+}
+
+/* ==========================================================================
+   Profile Page Elements
+   ========================================================================== */
+.profile-cover {
+  height: 160px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+  border-radius: var(--sims-radius-lg) var(--sims-radius-lg) 0 0;
+  position: relative;
+}
+
+.profile-header-card {
+  background: #ffffff;
+  border: 1px solid var(--sims-border);
+  border-radius: var(--sims-radius-lg);
+  box-shadow: var(--sims-shadow-sm);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.profile-avatar-wrapper {
+  position: relative;
+  margin-top: -65px;
+  margin-left: 2rem;
+  display: inline-block;
+}
+
+.profile-avatar-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+  background: #ffffff;
+}
+
+.profile-status-indicator {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--sims-emerald);
+  border: 3px solid #ffffff;
+}
+
+.profile-header-info {
+  padding: 1.25rem 2rem 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.profile-name-lg {
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+  color: var(--sims-text-primary);
+}
+
+.profile-degree-text {
+  font-size: 1rem;
+  color: var(--sims-text-secondary);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Profile Data Fields (View Mode) */
+.profile-field-group {
+  padding: 0.85rem 0;
+  border-bottom: 1px dashed var(--sims-border);
+}
+
+.profile-field-group:last-child {
+  border-bottom: none;
+}
+
+.profile-field-label {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--sims-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.profile-field-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--sims-text-primary);
+}
+
+/* Edit Mode Banner */
+.edit-mode-alert {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+  border-radius: var(--sims-radius-md);
+  padding: 0.85rem 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Custom Nav Tabs for Profile */
+.profile-tabs .nav-link {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--sims-text-secondary);
+  border: none;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  transition: var(--sims-transition);
+}
+
+.profile-tabs .nav-link:hover {
+  color: var(--sims-accent);
+}
+
+.profile-tabs .nav-link.active {
+  color: var(--sims-accent);
+  background: transparent;
+  border-bottom-color: var(--sims-accent);
+}
+
+@media (max-width: 768px) {
+  .dashboard-hero {
+    padding: 1.75rem 1.5rem;
+  }
+  .profile-avatar-wrapper {
+    margin-left: 1.25rem;
+  }
+  .profile-header-info {
+    padding: 1rem 1.25rem;
+  }
+}

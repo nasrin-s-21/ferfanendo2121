@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Login | Apex SIMS - Student Information Management System</title>
+  <meta name="description" content="Sign in to Apex Institute of Technology Student Information Management System to access your academic records, attendance, and profile.">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <main class="auth-wrapper">
+    <div class="auth-card-container">
+      <div class="row g-0 align-items-stretch">
+        
+        <!-- Left Hero Pane (Collegiate Branding & Campus Banner) -->
+        <div class="col-lg-6 auth-hero-pane d-none d-lg-flex">
+          <div class="auth-hero-pattern"></div>
+          
+          <div class="auth-hero-content">
+            <div class="auth-hero-badge">
+              <i class="bi bi-award-fill text-warning"></i> NAAC 'A++' Accredited Institution
+            </div>
+            
+            <h1 class="auth-hero-title">Apex Institute of Technology</h1>
+            <p class="auth-hero-desc">
+              Welcome to the centralized Student Information Management System (SIMS). Empowering students with seamless academic tracking, grades, and services.
+            </p>
+
+            <ul class="auth-feature-list">
+              <li class="auth-feature-item">
+                <span class="auth-feature-icon"><i class="bi bi-shield-check"></i></span>
+                <span>Secure single sign-on for all academic records</span>
+              </li>
+              <li class="auth-feature-item">
+                <span class="auth-feature-icon"><i class="bi bi-graph-up-arrow"></i></span>
+                <span>Real-time CGPA, attendance and timetable metrics</span>
+              </li>
+              <li class="auth-feature-item">
+                <span class="auth-feature-icon"><i class="bi bi-bell"></i></span>
+                <span>Instant circulars, examination alerts & notifications</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="auth-hero-footer">
+            <span>© 2026 Apex Institute of Technology</span>
+            <span><i class="bi bi-patch-check-fill text-info me-1"></i> SIMS v3.2.0</span>
+          </div>
+        </div>
+
+        <!-- Right Form Pane (Student Login) -->
+        <div class="col-lg-6 auth-form-pane">
+          <header class="auth-header">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="sims-brand-logo">
+                <i class="bi bi-mortarboard-fill"></i>
+              </div>
+              <div>
+                <span class="fw-bold text-primary d-block" style="font-size: 1.15rem; line-height: 1.2;">Apex SIMS</span>
+                <small class="text-muted text-uppercase fw-semibold" style="font-size: 0.7rem; letter-spacing: 0.05em;">Student Portal</small>
+              </div>
+            </div>
+            <h2 class="auth-title">Student Portal Sign In</h2>
+            <p class="auth-subtitle">Enter your official student credentials to access your dashboard.</p>
+          </header>
+
+          <!-- Demo Credentials Helper Box -->
+          <aside class="demo-credentials-box" aria-label="Demo login information">
+            <div class="demo-credentials-content">
+              <strong><i class="bi bi-lightbulb-fill text-warning me-1"></i> Demo Access:</strong><br>
+              Reg No: <code>21CS108</code> | Password: <code>Student@123</code>
+            </div>
+            <button type="button" class="demo-credentials-btn" id="fillDemoBtn" title="Auto-fill with sample credentials">
+              <i class="bi bi-magic me-1"></i> Auto Fill
+            </button>
+          </aside>
+
+          <!-- Login Form -->
+          <form id="loginForm" class="needs-validation" novalidate>
+            
+            <!-- Student Register Number -->
+            <div class="mb-3">
+              <label for="registerNumber" class="form-label">Student Register Number <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                <input 
+                  type="text" 
+                  class="form-control text-uppercase" 
+                  id="registerNumber" 
+                  name="registerNumber"
+                  placeholder="e.g. 21CS108" 
+                  required 
+                  autocomplete="username"
+                >
+                <div class="invalid-feedback">
+                  Please enter your student register number.
+                </div>
+              </div>
+            </div>
+
+            <!-- Password with Show/Hide Toggle -->
+            <div class="mb-3">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <label for="password" class="form-label mb-0">Password <span class="text-danger">*</span></label>
+                <a href="#forgotPasswordModal" class="small text-decoration-none fw-semibold text-primary" data-bs-toggle="modal">
+                  Forgot Password?
+                </a>
+              </div>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                <input 
+                  type="password" 
+                  class="form-control has-toggle" 
+                  id="password" 
+                  name="password"
+                  placeholder="Enter your password" 
+                  required 
+                  autocomplete="current-password"
+                >
+                <button 
+                  type="button" 
+                  class="password-toggle-btn" 
+                  data-target="password" 
+                  id="togglePasswordBtn" 
+                  title="Toggle password visibility"
+                  aria-label="Show password"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+                <div class="invalid-feedback">
+                  Please enter your password.
+                </div>
+              </div>
+            </div>
+
+            <!-- Remember me & help -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rememberMe" checked>
+                <label class="form-check-label small text-secondary" for="rememberMe">
+                  Remember this device
+                </label>
+              </div>
+              <span class="small text-muted"><i class="bi bi-shield-lock me-1"></i>256-bit SSL</span>
+            </div>
+
+            <!-- Submit Button with Loading State -->
+            <button type="submit" class="btn btn-sims-primary w-100 py-2 fs-6 mb-4" id="loginSubmitBtn">
+              <span id="btnSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+              <span id="btnText"><i class="bi bi-box-arrow-in-right me-1"></i> Sign In to Portal</span>
+            </button>
+
+            <!-- Link to Registration -->
+            <div class="text-center pt-2 border-top">
+              <p class="text-muted small mb-0">
+                New student?
+                <a href="register.html" class="fw-bold text-primary text-decoration-none ms-1">
+                  Create Student Account / Register Here <i class="bi bi-arrow-right"></i>
+                </a>
+              </p>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: var(--sims-radius-lg);">
+        <div class="modal-header border-bottom pb-3">
+          <div class="d-flex align-items-center gap-2">
+            <div class="rounded-circle bg-primary bg-opacity-10 p-2 text-primary">
+              <i class="bi bi-key-fill fs-5"></i>
+            </div>
+            <div>
+              <h5 class="modal-title fw-bold" id="forgotPasswordModalLabel">Reset Student Password</h5>
+              <small class="text-muted">Receive verification link & instructions</small>
+            </div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="forgotPasswordForm">
+          <div class="modal-body py-4">
+            <p class="text-secondary small mb-3">
+              Provide your official Student Register Number and registered email address to receive password reset instructions.
+            </p>
+            <div class="mb-3">
+              <label for="fpRegisterNo" class="form-label">Register Number</label>
+              <input type="text" class="form-control text-uppercase" id="fpRegisterNo" placeholder="e.g. 21CS108" required>
+            </div>
+            <div class="mb-3">
+              <label for="fpEmail" class="form-label">Registered Email ID</label>
+              <input type="email" class="form-control" id="fpEmail" placeholder="student@apex.edu.in" required>
+            </div>
+          </div>
+          <div class="modal-footer border-top pt-3">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-sims-primary" id="fpSubmitBtn">Send Instructions</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="sims-toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

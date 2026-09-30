@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard | Apex SIMS - Student Information Management System</title>
+  <meta name="description" content="Apex Institute of Technology Student Portal Dashboard. View attendance, CGPA, class schedule, and college announcements.">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="sims-navbar">
+    <div class="container-fluid px-lg-5">
+      <div class="d-flex align-items-center justify-content-between w-100">
+        
+        <!-- Brand Logo & Title -->
+        <a href="dashboard.html" class="sims-brand">
+          <div class="sims-brand-logo">
+            <i class="bi bi-mortarboard-fill"></i>
+          </div>
+          <div class="sims-brand-text">
+            <span class="sims-brand-title">Apex Institute of Technology</span>
+            <span class="sims-brand-subtitle">Student Information System (SIMS)</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="d-none d-md-flex align-items-center gap-2">
+          <a href="dashboard.html" class="sims-nav-link active">
+            <i class="bi bi-grid-fill"></i> Dashboard
+          </a>
+          <a href="profile.html" class="sims-nav-link">
+            <i class="bi bi-person-badge"></i> Student Profile
+          </a>
+          <a href="#idCardModal" data-bs-toggle="modal" class="sims-nav-link">
+            <i class="bi bi-card-heading"></i> Student ID Card
+          </a>
+        </div>
+
+        <!-- Right Side: Notifications & User Badge -->
+        <div class="d-flex align-items-center gap-3">
+          
+          <!-- Notifications Bell -->
+          <div class="dropdown">
+            <button class="btn btn-light rounded-circle position-relative p-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Announcements">
+              <i class="bi bi-bell text-secondary fs-5"></i>
+              <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                <span class="visually-hidden">New alerts</span>
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 py-2" style="width: 320px; border-radius: var(--sims-radius-md);">
+              <li class="px-3 py-2 border-bottom d-flex justify-content-between align-items-center">
+                <span class="fw-bold" style="font-size: 0.85rem;">Recent Notifications</span>
+                <span class="badge bg-primary rounded-pill">2 New</span>
+              </li>
+              <li>
+                <a class="dropdown-item py-2 px-3 small" href="#">
+                  <div class="fw-semibold text-truncate">End Semester Timetable May 2026</div>
+                  <small class="text-muted">Examination Cell • 2 hrs ago</small>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item py-2 px-3 small" href="#">
+                  <div class="fw-semibold text-truncate">Placement Drive: Google & Microsoft</div>
+                  <small class="text-muted">Training & Placement • Yesterday</small>
+                </a>
+              </li>
+              <li class="border-top pt-1 text-center">
+                <a class="dropdown-item small text-primary fw-semibold py-1" href="#noticesSection">View all circulars</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- User Badge / Dropdown -->
+          <div class="dropdown">
+            <button class="user-badge-btn dropdown-toggle border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img id="navUserAvatar" src="assets/images/student.jpg" alt="Student Profile" class="user-badge-avatar">
+              <div class="user-badge-name d-none d-sm-block text-start">
+                <span id="navUserName">Aarav Sharma</span>
+                <div class="user-badge-role" id="navUserReg">21CS108</div>
+              </div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-2" style="border-radius: var(--sims-radius-md);">
+              <li class="px-3 py-2 border-bottom">
+                <div class="fw-bold" style="font-size: 0.85rem;">Signed in as Student</div>
+                <div class="text-muted small">Academic Portal</div>
+              </li>
+              <li>
+                <a class="dropdown-item py-2" href="profile.html">
+                  <i class="bi bi-person me-2 text-primary"></i> View My Profile
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item py-2" href="profile.html?edit=true">
+                  <i class="bi bi-pencil-square me-2 text-warning"></i> Edit Profile Info
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item py-2" href="#idCardModal" data-bs-toggle="modal">
+                  <i class="bi bi-card-text me-2 text-info"></i> Digital Student ID
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item py-2 text-danger logout-btn" href="#">
+                  <i class="bi bi-box-arrow-right me-2"></i> Log Out
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="container-fluid px-lg-5 py-4 flex-grow-1">
+
+    <!-- 1. Student Welcome Hero Banner -->
+    <section class="dashboard-hero">
+      <div class="dashboard-hero-content">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-4">
+          
+          <div class="d-flex align-items-center gap-3">
+            <div class="hero-avatar-box d-none d-sm-block">
+              <img id="dashboardAvatar" src="assets/images/student.jpg" alt="Student Portrait">
+            </div>
+            <div>
+              <div class="hero-meta-badge mb-2">
+                <i class="bi bi-check-circle-fill text-success"></i> Academic Status: Active Regular
+              </div>
+              <h1 class="dashboard-hero-title" id="dashboardGreeting">
+                Welcome, Aarav! 👋
+              </h1>
+              <p class="mb-0 text-light opacity-75" style="font-size: 0.95rem;">
+                Here is your academic overview, schedule, and recent notices for today.
+              </p>
+              
+              <div class="dashboard-hero-meta">
+                <span class="hero-meta-badge">
+                  <i class="bi bi-person-badge"></i> <strong id="dashboardRegNo">21CS108</strong>
+                </span>
+                <span class="hero-meta-badge">
+                  <i class="bi bi-buildings"></i> <span id="dashboardDept">Computer Science & Engineering</span>
+                </span>
+                <span class="hero-meta-badge">
+                  <i class="bi bi-calendar-event"></i> <span id="dashboardYearSection">3rd Year • Section A</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons in Banner -->
+          <div class="d-flex flex-wrap gap-2">
+            <a href="profile.html" class="btn btn-light fw-bold px-3 py-2" style="border-radius: var(--sims-radius-md);">
+              <i class="bi bi-person-lines-fill me-1 text-primary"></i> View Profile
+            </a>
+            <a href="profile.html?edit=true" class="btn btn-outline-light fw-bold px-3 py-2" style="border-radius: var(--sims-radius-md);">
+              <i class="bi bi-pencil-square me-1"></i> Edit Profile
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Academic Stats Row (4 Metric Cards) -->
+    <section class="row g-3 mb-4">
+      
+      <!-- CGPA Card -->
+      <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-blue">
+            <i class="bi bi-trophy-fill"></i>
+          </div>
+          <div>
+            <div class="stat-value" id="statCgpa">8.74</div>
+            <div class="stat-label">Cumulative GPA</div>
+            <div class="stat-subtext text-success">
+              <i class="bi bi-arrow-up-right me-1"></i> First Class Distinction
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attendance Card -->
+      <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-emerald">
+            <i class="bi bi-pie-chart-fill"></i>
+          </div>
+          <div>
+            <div class="stat-value" id="statAttendance">92.5%</div>
+            <div class="stat-label">Overall Attendance</div>
+            <div class="stat-subtext text-success">
+              <i class="bi bi-shield-check me-1"></i> Safe (Above 75% req.)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Credits Card -->
+      <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-amber">
+            <i class="bi bi-bookmark-star-fill"></i>
+          </div>
+          <div>
+            <div class="stat-value" id="statCredits">112 / 160</div>
+            <div class="stat-label">Credits Earned</div>
+            <div class="stat-subtext text-muted">
+              70% Degree Completed
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Class Rank Card -->
+      <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-purple">
+            <i class="bi bi-mortarboard-fill"></i>
+          </div>
+          <div>
+            <div class="stat-value" id="statRank">4 of 68</div>
+            <div class="stat-label">Department Rank</div>
+            <div class="stat-subtext text-primary">
+              <i class="bi bi-star-fill text-warning me-1"></i> Top 5 Percentile
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 3. Dashboard Core Layout (2 Columns: Left Main, Right Sidebar) -->
+    <div class="row g-4">
+      
+      <!-- Left Column: Timetable & Announcements -->
+      <div class="col-lg-8">
+        
+        <!-- Today's Schedule -->
+        <div class="sims-card mb-4">
+          <div class="sims-card-header">
+            <h2 class="sims-card-title">
+              <i class="bi bi-calendar3-week text-primary"></i> Today's Class & Lab Schedule
+            </h2>
+            <span class="badge bg-primary bg-opacity-10 text-primary fw-semibold px-2 py-1">
+              Semester VI • Weekday
+            </span>
+          </div>
+          <div class="sims-card-body">
+            <div id="scheduleContainer">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Academic Notices & Circulars -->
+        <div class="sims-card" id="noticesSection">
+          <div class="sims-card-header">
+            <h2 class="sims-card-title">
+              <i class="bi bi-megaphone-fill text-danger"></i> Official Notices & Circulars
+            </h2>
+            <button class="btn btn-sm btn-link text-decoration-none text-primary fw-semibold p-0">
+              Refresh Feed <i class="bi bi-arrow-repeat"></i>
+            </button>
+          </div>
+          <div class="sims-card-body">
+            <div id="noticesContainer">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Profile Summary & Quick Actions -->
+      <div class="col-lg-4">
+        
+        <!-- Profile Summary Card -->
+        <div class="sims-card mb-4">
+          <div class="sims-card-header">
+            <h2 class="sims-card-title">
+              <i class="bi bi-person-circle text-primary"></i> Student Profile Summary
+            </h2>
+            <a href="profile.html" class="btn btn-sm btn-sims-subtle" title="Open complete profile">
+              View All <i class="bi bi-chevron-right"></i>
+            </a>
+          </div>
+          <div class="sims-card-body">
+            <div class="list-group list-group-flush" style="font-size: 0.9rem;">
+              
+              <div class="list-group-item px-0 py-2 d-flex justify-content-between">
+                <span class="text-muted"><i class="bi bi-person me-2"></i>Full Name</span>
+                <span class="fw-bold" id="sumName">Aarav Sharma</span>
+              </div>
+
+              <div class="list-group-item px-0 py-2 d-flex justify-content-between">
+                <span class="text-muted"><i class="bi bi-hash me-2"></i>Register No</span>
+                <span class="fw-bold text-primary font-monospace" id="sumReg">21CS108</span>
+              </div>
+
+              <div class="list-group-item px-0 py-2 d-flex justify-content-between">
+                <span class="text-muted"><i class="bi bi-mortarboard me-2"></i>Department</span>
+                <span class="fw-semibold text-end" style="max-width: 180px;" id="sumDept">Computer Science</span>
+              </div>
+
+              <div class="list-group-item px-0 py-2 d-flex justify-content-between">
+                <span class="text-muted"><i class="bi bi-clock-history me-2"></i>Year & Sec</span>
+                <span class="fw-semibold" id="sumYear">3rd Year (A)</span>
+              </div>
+
+              <div class="list-group-item px-0 py-2 d-flex justify-content-between">
+                <span class="text-muted"><i class="bi bi-envelope me-2"></i>Email</span>
+                <span class="fw-semibold text-truncate" style="max-width: 170px;" id="sumEmail">aarav@apex.edu.in</span>
+              </div>
+
+              <div class="list-group-item px-0 py-2 d-flex justify-content-between">
+                <span class="text-muted"><i class="bi bi-telephone me-2"></i>Phone</span>
+                <span class="fw-semibold" id="sumPhone">+91 9876543210</span>
+              </div>
+
+              <div class="list-group-item px-0 py-2 d-flex justify-content-between">
+                <span class="text-muted"><i class="bi bi-person-check me-2"></i>Faculty Advisor</span>
+                <span class="fw-semibold text-end small" style="max-width: 170px;" id="sumAdvisor">Dr. Ramesh Kumar</span>
+              </div>
+
+            </div>
+
+            <!-- Profile Action Buttons -->
+            <div class="d-grid gap-2 mt-3 pt-3 border-top">
+              <a href="profile.html" class="btn btn-sims-primary btn-sm">
+                <i class="bi bi-eye me-1"></i> View Detailed Profile
+              </a>
+              <a href="profile.html?edit=true" class="btn btn-sims-outline btn-sm">
+                <i class="bi bi-pencil me-1"></i> Edit Profile Information
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions Grid -->
+        <div class="sims-card">
+          <div class="sims-card-header">
+            <h2 class="sims-card-title">
+              <i class="bi bi-grid text-primary"></i> Student Quick Services
+            </h2>
+          </div>
+          <div class="sims-card-body">
+            <div class="row g-2">
+              
+              <div class="col-6">
+                <a href="#idCardModal" data-bs-toggle="modal" class="action-card">
+                  <div class="action-card-icon">
+                    <i class="bi bi-person-vcard"></i>
+                  </div>
+                  <span class="action-card-title">Digital ID</span>
+                </a>
+              </div>
+
+              <div class="col-6">
+                <a href="profile.html" class="action-card">
+                  <div class="action-card-icon" style="background: #ecfdf5; color: #10b981;">
+                    <i class="bi bi-file-earmark-check"></i>
+                  </div>
+                  <span class="action-card-title">Academics</span>
+                </a>
+              </div>
+
+              <div class="col-6">
+                <a href="javascript:void(0)" onclick="window.showToast('Grade Report PDF download initiated for Semester V.', 'info', 'Grade Card')" class="action-card">
+                  <div class="action-card-icon" style="background: #fffbeb; color: #f59e0b;">
+                    <i class="bi bi-journal-bookmark"></i>
+                  </div>
+                  <span class="action-card-title">Grade Sheet</span>
+                </a>
+              </div>
+
+              <div class="col-6">
+                <a href="javascript:void(0)" onclick="window.showToast('Semester fee status: PAID. Receipt #APX-9821.', 'success', 'Fee Clearance')" class="action-card">
+                  <div class="action-card-icon" style="background: #f5f3ff; color: #8b5cf6;">
+                    <i class="bi bi-receipt"></i>
+                  </div>
+                  <span class="action-card-title">Fee Status</span>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Digital ID Card Modal -->
+  <div class="modal fade" id="idCardModal" tabindex="-1" aria-labelledby="idCardModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: var(--sims-radius-lg); overflow: hidden;">
+        <div class="modal-header text-white" style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-mortarboard-fill fs-4"></i>
+            <div>
+              <h5 class="modal-title fw-bold mb-0" id="idCardModalLabel">Apex Institute of Technology</h5>
+              <small class="text-white-50">Official Student Identity Card</small>
+            </div>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 text-center">
+          
+          <div class="mb-3">
+            <img id="idCardPhoto" src="assets/images/student.jpg" alt="Student Photo" class="rounded-circle border border-3 border-primary shadow-sm" style="width: 110px; height: 110px; object-fit: cover;">
+          </div>
+          
+          <h4 class="fw-bold mb-1" id="idCardName">Aarav Sharma</h4>
+          <span class="badge bg-primary px-3 py-2 rounded-pill font-monospace fs-6 mb-3" id="idCardReg">21CS108</span>
+
+          <div class="text-start bg-light p-3 rounded-3 small mb-3">
+            <div class="row g-2">
+              <div class="col-5 text-muted">Department:</div>
+              <div class="col-7 fw-bold" id="idCardDept">Computer Science & Engineering</div>
+              <div class="col-5 text-muted">Academic Batch:</div>
+              <div class="col-7 fw-bold" id="idCardBatch">2021 - 2025</div>
+              <div class="col-5 text-muted">Blood Group:</div>
+              <div class="col-7 fw-bold" id="idCardBlood">O+</div>
+              <div class="col-5 text-muted">Emergency Phone:</div>
+              <div class="col-7 fw-bold text-danger" id="idCardEmergency">9845012345</div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center align-items-center gap-2 text-muted small">
+            <i class="bi bi-qr-code fs-3 text-dark"></i>
+            <span>Barcoded for Campus Access & Library Loans</span>
+          </div>
+
+        </div>
+        <div class="modal-footer bg-light border-top">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-sims-primary btn-sm" onclick="window.print()">
+            <i class="bi bi-printer me-1"></i> Print / Save Card
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notice Detail Modal -->
+  <div class="modal fade" id="noticeDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: var(--sims-radius-lg);">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold" id="modalNoticeTitle">Notice Title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="d-flex gap-2 mb-3">
+            <span class="badge bg-primary" id="modalNoticeCategory">Category</span>
+            <span class="badge bg-secondary" id="modalNoticeDate">Date</span>
+          </div>
+          <p class="text-secondary" style="line-height: 1.6;">
+            This is an official communication issued by the Office of the Controller of Examinations and Academic Affairs for registered students of Apex Institute of Technology. All students are requested to review the deadlines and adhere to the guidelines prescribed in the circular.
+          </p>
+          <div class="alert alert-info py-2 small mb-0">
+            <i class="bi bi-info-circle me-1"></i> Signed by Registrar & Dean of Academic Affairs.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logout Confirmation Modal -->
+  <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: var(--sims-radius-lg);">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold text-danger" id="logoutModalLabel">
+            <i class="bi bi-box-arrow-right me-1"></i> Confirm Sign Out
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-4">
+          <p class="mb-0 text-secondary">
+            Are you sure you want to end your student portal session? Any unsaved edits will be discarded.
+          </p>
+        </div>
+        <div class="modal-footer border-top">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmLogoutBtn">
+            <i class="bi bi-box-arrow-right me-1"></i> Sign Out Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="sims-toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Footer -->
+  <footer class="sims-footer">
+    <div class="container-fluid px-lg-5">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 text-center text-md-start">
+        <div>
+          <strong>Apex Institute of Technology</strong> — Student Information Management System (SIMS)
+          <div class="text-muted small mt-1">Autonomous Institution affiliated with Anna University • Accredited by NAAC with 'A++' Grade</div>
+        </div>
+        <div class="d-flex gap-3 small">
+          <a href="#">Helpdesk</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Exam Cell</a>
+          <a href="#">Academic Regulations</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

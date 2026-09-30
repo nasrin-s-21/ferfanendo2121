@@ -1,0 +1,152 @@
+1. Frontend Development Prompt
+
+Build the FRONTEND ONLY for a Student Information Management System.
+
+
+Technology:
+
+- HTML5
+
+- CSS3
+
+- JavaScript
+
+- Bootstrap 5
+
+
+Create a modern, clean, responsive college student website.
+
+
+Pages required:
+
+
+1. Login Page
+
+- Student Register Number
+
+- Password
+
+- Show/Hide Password
+
+- Login button
+
+- Forgot Password
+
+- Link to Registration
+
+- Form validation
+
+- Error/success messages
+
+
+2. Student Registration Page
+
+Fields:
+
+- Student Name
+
+- Register Number
+
+- Date of Birth
+
+- Gender
+
+- Email
+
+- Phone Number
+
+- Department
+
+- Year
+
+- Section
+
+- Address
+
+- City
+
+- District
+
+- State
+
+- Pincode
+
+- Parent Name
+
+- Parent Phone
+
+- Password
+
+- Confirm Password
+
+
+3. Student Dashboard
+
+- Welcome message
+
+- Student name
+
+- Register number
+
+- Department
+
+- Year
+
+- Profile summary
+
+- View Profile
+
+- Edit Profile
+
+- Logout
+
+
+4. Student Profile Page
+
+Display:
+
+- Personal information
+
+- Academic information
+
+- Contact information
+
+- Parent/Guardian information
+
+- Edit button
+
+- Save/Update button
+
+
+Requirements:
+
+- Fully responsive for mobile, tablet and desktop
+
+- Professional college-style UI
+
+- Clean navigation
+
+- Cards and dashboard layout
+
+- Client-side form validation
+
+- Password visibility toggle
+
+- Loading states
+
+- Success/error notifications
+
+- Use semantic HTML
+
+- Keep JavaScript separate from HTML
+
+- Keep CSS separate from HTML
+
+
+IMPORTANT:
+
+Do not create the backend or database yet.
+
+Use dummy/mock data and placeholder API URLs.
+
+Create a clean frontend folder structure.
